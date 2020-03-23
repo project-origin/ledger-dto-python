@@ -7,18 +7,17 @@ from .enums import MeasurementType
 
 @dataclass
 class Measurement():
-    address: Optional[str] = field()
     amount: int = field()
     type: MeasurementType = field()
     begin: datetime = field()
     end: datetime = field()
     sector: str = field()
     key: str = field()
+    address: Optional[str] = field(default=None)
 
 
 @dataclass
 class GGO():
-    address: Optional[str] = field()
     amount: int = field()
     begin: datetime = field()
     end: datetime = field()
@@ -26,3 +25,4 @@ class GGO():
     tech_type: str = field()
     fuel_type: str = field()
     key: str = field()
+    address: Optional[str] = field(default=None)
