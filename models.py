@@ -1,6 +1,7 @@
 from datetime import datetime
 from dataclasses import dataclass, field
 from typing import Optional
+from marshmallow_dataclass import class_schema
 
 from .enums import MeasurementType
 
@@ -15,6 +16,10 @@ class Measurement():
     key: str = field()
     address: Optional[str] = field(default=None)
 
+    @staticmethod
+    def get_schema():
+        return class_schema(Measurement)(exclude=["address"])
+
 
 @dataclass
 class GGO():
@@ -26,3 +31,7 @@ class GGO():
     fuel_type: str = field()
     key: str = field()
     address: Optional[str] = field(default=None)
+
+    @staticmethod
+    def get_schema():
+        return class_schema(GGO)(exclude=["address"])

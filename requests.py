@@ -15,7 +15,7 @@ class LedgerPublishMeasurementRequest:
     key: str = field()
 
     @validates_schema
-    def validate_numbers(self, data, **kwargs):
+    def validate_dates(self, data, **kwargs):
         
         if  data['begin'] >= data['end']:
             raise ValidationError('Begin must be before End!')
@@ -58,4 +58,3 @@ class LedgerSplitGGOPart:
 @dataclass
 class LedgerSplitGGORequest:
     parts: List[LedgerSplitGGOPart] = field()
-
