@@ -28,6 +28,7 @@ class LedgerPublishMeasurementRequest:
 @dataclass
 class LedgerIssueGGORequest:
     origin: str = field()
+    destination: str = field()
     tech_type: str = field()
     fuel_type: str = field()
     key: str = field()
@@ -35,6 +36,8 @@ class LedgerIssueGGORequest:
 
 @dataclass
 class LedgerTransferGGORequest:
+    origin: str = field()
+    destination: str = field()
     key: str = field()
     
 
@@ -57,4 +60,5 @@ class LedgerSplitGGOPart:
 
 @dataclass
 class LedgerSplitGGORequest:
+    origin: str = field()
     parts: List[LedgerSplitGGOPart] = field()

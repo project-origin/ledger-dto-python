@@ -1,9 +1,11 @@
+
 from datetime import datetime
 from dataclasses import dataclass, field
-from typing import Optional
+from enum import Enum
+from typing import Optional, List
 from marshmallow_dataclass import class_schema
 
-from .enums import MeasurementType
+from .enums import MeasurementType, GGOAction
 
 
 @dataclass
@@ -20,9 +22,15 @@ class Measurement():
     def get_schema():
         return class_schema(Measurement)(exclude=["address"])
 
+@dataclass
+class GGONext():
+    action: GGOAction = field()
+    addresses: List[str] = field()
+    
 
 @dataclass
 class GGO():
+    origin: str = field()
     amount: int = field()
     begin: datetime = field()
     end: datetime = field()
@@ -30,6 +38,7 @@ class GGO():
     tech_type: str = field()
     fuel_type: str = field()
     key: str = field()
+    next: Optional[GGONext] = field(default=None)
     address: Optional[str] = field(default=None)
 
     @staticmethod
