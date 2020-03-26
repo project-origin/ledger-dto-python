@@ -1,11 +1,13 @@
 
 from datetime import datetime
 from dataclasses import dataclass, field
-from enum import Enum
 from typing import Optional, List
 from marshmallow_dataclass import class_schema
 
 from .enums import MeasurementType, GGOAction
+
+
+
 
 
 @dataclass
@@ -44,3 +46,18 @@ class GGO():
     @staticmethod
     def get_schema():
         return class_schema(GGO)(exclude=["address"])
+
+@dataclass
+class SettlementPart:
+    ggo: str = field()
+    amount: int = field()
+
+@dataclass
+class Settlement:
+    measurement: str = field()
+    key: str = field()
+    parts : List[SettlementPart] = field()
+
+    @staticmethod
+    def get_schema():
+        return class_schema(Settlement)()

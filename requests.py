@@ -6,7 +6,7 @@ from marshmallow import validate, validates_schema, ValidationError
 from .enums import MeasurementType
 
 @dataclass
-class LedgerPublishMeasurementRequest:
+class PublishMeasurementRequest:
     begin: datetime = field()   
     end: datetime = field()
     sector: str = field(metadata={"validate": validate.OneOf(['DK1', 'DK2'])})
@@ -26,7 +26,7 @@ class LedgerPublishMeasurementRequest:
 
 
 @dataclass
-class LedgerIssueGGORequest:
+class IssueGGORequest:
     origin: str = field()
     destination: str = field()
     tech_type: str = field()
@@ -35,30 +35,36 @@ class LedgerIssueGGORequest:
 
 
 @dataclass
-class LedgerTransferGGORequest:
+class TransferGGORequest:
     origin: str = field()
     destination: str = field()
     key: str = field()
     
-
 @dataclass
-class LedgerRetireGGORequest:
-    settlement_address: str = field()
-
-@dataclass
-class LedgerSettlementRequest:
-    measurement_address: str = field()
-    settlement_address: str = field()
-    ggo_addresses: List[str] = field()
-
-
-@dataclass
-class LedgerSplitGGOPart:
+class SplitGGOPart:
     address: str = field()
     amount: int = field()
     key: str = field()
 
 @dataclass
-class LedgerSplitGGORequest:
+class SplitGGORequest:
     origin: str = field()
-    parts: List[LedgerSplitGGOPart] = field()
+    parts: List[SplitGGOPart] = field()
+
+    
+@dataclass
+class RetireGGOPart:
+    origin: str = field()
+    settlement_address: str = field()
+
+@dataclass
+class SignedRetireGGOPart:
+    content: RetireGGOPart = field()
+    signature: str = field()
+
+@dataclass
+class RetireGGORequest:
+    measurement_address: str = field()
+    settlement_address: str = field()
+    key: str = field()
+    parts: List[SignedRetireGGOPart] = field()
