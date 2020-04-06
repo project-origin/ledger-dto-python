@@ -24,7 +24,6 @@ class PublishMeasurementRequest:
             raise ValidationError('Only positive hourly measurements are currently supported!')
 
 
-
 @dataclass
 class IssueGGORequest:
     origin: str = field()
@@ -40,11 +39,13 @@ class TransferGGORequest:
     destination: str = field()
     key: str = field()
     
+
 @dataclass
 class SplitGGOPart:
     address: str = field()
     amount: int = field()
     key: str = field()
+
 
 @dataclass
 class SplitGGORequest:
@@ -57,10 +58,12 @@ class RetireGGOPart:
     origin: str = field()
     settlement_address: str = field()
 
+
 @dataclass
 class SignedRetireGGOPart:
     content: RetireGGOPart = field()
     signature: str = field()
+
 
 @dataclass
 class RetireGGORequest:
