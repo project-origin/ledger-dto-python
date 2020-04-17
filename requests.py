@@ -58,6 +58,9 @@ class RetireGGOPart:
     origin: str = field()
     settlement_address: str = field()
 
+    def get_signature_bytes(self):
+        return f'{self.origin}|{self.settlement_address}'.encode('utf8')
+
 
 @dataclass
 class SignedRetireGGOPart:
