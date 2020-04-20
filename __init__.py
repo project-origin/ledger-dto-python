@@ -7,6 +7,8 @@ from .requests import PublishMeasurementRequest
 from .requests import IssueGGORequest
 from .requests import TransferGGORequest
 from .requests import SplitGGORequest, SplitGGOPart
-from .requests import RetireGGORequest, RetireGGOPart, SignedRetireGGOPart
+from .requests import RetireGGORequest
+from .requests import SettlementRequest
 
 
+from .helpers import generate_address, AddressPrefix

@@ -17,7 +17,6 @@ class Measurement():
     begin: datetime = field()
     end: datetime = field()
     sector: str = field()
-    key: str = field()
     address: Optional[str] = field(default=None)
 
     @staticmethod
@@ -39,7 +38,6 @@ class GGO():
     sector: str = field()
     tech_type: str = field()
     fuel_type: str = field()
-    key: str = field()
     next: Optional[GGONext] = field(default=None)
     address: Optional[str] = field(default=None)
 
@@ -55,7 +53,6 @@ class SettlementPart:
 @dataclass
 class Settlement:
     measurement: str = field()
-    key: str = field()
     parts : List[SettlementPart] = field()
 
     @staticmethod

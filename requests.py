@@ -12,7 +12,6 @@ class PublishMeasurementRequest:
     sector: str = field(metadata={"validate": validate.OneOf(['DK1', 'DK2'])})
     type: MeasurementType = field()
     amount: int = field(metadata={"validate": validate.Range(min=0)})
-    key: str = field()
 
     @validates_schema
     def validate_dates(self, data, **kwargs):
@@ -30,21 +29,18 @@ class IssueGGORequest:
     destination: str = field()
     tech_type: str = field()
     fuel_type: str = field()
-    key: str = field()
 
 
 @dataclass
 class TransferGGORequest:
     origin: str = field()
     destination: str = field()
-    key: str = field()
     
 
 @dataclass
 class SplitGGOPart:
     address: str = field()
     amount: int = field()
-    key: str = field()
 
 
 @dataclass
@@ -52,25 +48,15 @@ class SplitGGORequest:
     origin: str = field()
     parts: List[SplitGGOPart] = field()
 
-    
-@dataclass
-class RetireGGOPart:
-    origin: str = field()
-    settlement_address: str = field()
-
-    def get_signature_bytes(self):
-        return f'{self.origin}|{self.settlement_address}'.encode('utf8')
-
-
-@dataclass
-class SignedRetireGGOPart:
-    content: RetireGGOPart = field()
-    signature: str = field()
-
 
 @dataclass
 class RetireGGORequest:
-    measurement_address: str = field()
+    origin: str = field()
     settlement_address: str = field()
-    key: str = field()
-    parts: List[SignedRetireGGOPart] = field()
+
+    
+@dataclass
+class SettlementRequest:
+    settlement_address: str = field()
+    measurement_address: str = field()
+    ggo_addresses: List[str] = field()
