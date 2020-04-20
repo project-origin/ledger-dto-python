@@ -1,10 +1,5 @@
 from enum import Enum
 from hashlib import sha512, sha224
-from bip32utils import BIP32Key
-from sawtooth_signing import create_context
-from sawtooth_signing import CryptoFactory, Signer
-from sawtooth_signing.secp256k1 import Secp256k1PrivateKey as PrivateKey
-
 
 class AddressPrefix(Enum):
     GGO = 'GGO'
