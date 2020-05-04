@@ -54,7 +54,8 @@ class SettlementPart:
 class Settlement:
     measurement: str = field()
     parts : List[SettlementPart] = field()
+    address: Optional[str] = field(default=None)
 
     @staticmethod
     def get_schema():
-        return class_schema(Settlement)()
+        return class_schema(Settlement)(exclude=["address"])
