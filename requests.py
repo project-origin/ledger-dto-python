@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
-from typing import List, Dict
+from typing import List, Dict, Any
 from marshmallow import validate, validates_schema, ValidationError
 
 from .enums import MeasurementType
@@ -30,7 +30,7 @@ class IssueGGORequest:
     destination: str = field()
     tech_type: str = field()
     fuel_type: str = field()
-    emissions: Dict[str, str] = field(default=None)
+    emissions: Dict[str, Dict[str, Any]] = field(default=None)
 
 
 @dataclass

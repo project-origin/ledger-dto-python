@@ -1,7 +1,7 @@
 
 from datetime import datetime
 from dataclasses import dataclass, field
-from typing import Optional, List, Dict
+from typing import Optional, List, Dict, Any
 from marshmallow_dataclass import class_schema
 
 from .enums import MeasurementType, GGOAction
@@ -43,7 +43,7 @@ class GGO():
     fuel_type: str = field()
     next: Optional[GGONext] = field(default=None)
     address: Optional[str] = field(default=None)
-    emissions: Dict[str, str] = field(default=None)
+    emissions: Dict[str, Dict[str, Any]] = field(default=None)
 
     class Meta:
         ordered = True
